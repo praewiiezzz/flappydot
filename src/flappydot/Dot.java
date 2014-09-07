@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 public class Dot {
 	 private float x;
 	  private float y;
+	  public static final int WIDTH = 40;
+	  public static final int HEIGHT = 40;
 	  private Image image;
 	 
 	  public Dot(float x, float y) throws SlickException {
@@ -15,6 +17,6 @@ public class Dot {
 	  }
 	 
 	  public void render() {
-	    image.draw(x - 20, 480 - (y + 20));
+	    image.draw(x - WIDTH/2, FlappyDotGame.GAME_HEIGHT - y - (HEIGHT/2));
 	  }
 }
