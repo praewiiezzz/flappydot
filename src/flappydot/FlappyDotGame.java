@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 public class FlappyDotGame extends BasicGame {
 
 	private Dot dot;
+	private PillarPair pillar;
 	public static final int GAME_WIDTH = 640;
 	public static final int GAME_HEIGHT = 480;
 	public static final float DOT_JUMP_VY = 10;
@@ -25,6 +26,7 @@ public class FlappyDotGame extends BasicGame {
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		// TODO Auto-generated method stub
 		dot.render();
+		pillar.render();
 	}
 
 	@Override
@@ -34,6 +36,8 @@ public class FlappyDotGame extends BasicGame {
 		container.getGraphics().setBackground(background);
 		dot = new Dot(GAME_WIDTH / 2, GAME_HEIGHT / 2, DOT_JUMP_VY);
 		isStarted = false;
+		pillar = new PillarPair(GAME_WIDTH/2,GAME_HEIGHT/2);
+		
 	}
 
 	@Override
