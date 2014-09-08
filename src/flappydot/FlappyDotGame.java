@@ -5,6 +5,7 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class FlappyDotGame extends BasicGame {
@@ -13,7 +14,7 @@ public class FlappyDotGame extends BasicGame {
 	public static final int GAME_WIDTH = 640;
 	public static final int GAME_HEIGHT = 480;
 	public static final float DOT_INITIAL_VY = 10;
-	public static final float G = (float)0.5;
+	public static final float G = (float) 0.5;
 
 	public FlappyDotGame(String title) {
 		super(title);
@@ -36,13 +37,7 @@ public class FlappyDotGame extends BasicGame {
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
-		try {
-			dot.update();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		dot.update();
 	}
 
 	public static void main(String[] args) {
@@ -50,10 +45,21 @@ public class FlappyDotGame extends BasicGame {
 			FlappyDotGame game = new FlappyDotGame("FlappyDot Game");
 			AppGameContainer container = new AppGameContainer(game);
 			container.setDisplayMode(GAME_WIDTH, GAME_HEIGHT, false);
-			container.setMinimumLogicUpdateInterval(1000 / 60); // 60 frame per second
+			container.setMinimumLogicUpdateInterval(1000 / 60); // 60 frame per
+																// second
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void keyPressed(int key, char c) {
+		// TODO Auto-generated method stub
+		if(key == Input.KEY_SPACE);
+		{
+			dot.setVy(DOT_INITIAL_VY);
+		}
+	}
 }
+    

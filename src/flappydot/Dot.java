@@ -22,10 +22,13 @@ public class Dot {
 	    image.draw(x - WIDTH/2, FlappyDotGame.GAME_HEIGHT - y - (HEIGHT/2));
 	  }
 
-	public void update() throws InterruptedException {
+	public void update()  {
 		// TODO Auto-generated method stub
 		y +=vy;
 		vy -=FlappyDotGame.G;
-		Thread.sleep(40);
+	}
+	
+	public void setVy(float vy) {
+		this.vy = vy;
 	}
 }
