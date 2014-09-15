@@ -16,7 +16,10 @@ public class FlappyDotGame extends BasicGame {
 	public static final int GAME_HEIGHT = 480;
 	public static final float DOT_JUMP_VY = 10;
 	public static final float G = (float) 0.5;
+	public static final float PILLAR_VX = -4;
 	private boolean isStarted;
+	private PillarPair[] pillars;
+	public static final int PILLAR_COUNT = 3;
 
 	public FlappyDotGame(String title) {
 		super(title);
@@ -25,8 +28,10 @@ public class FlappyDotGame extends BasicGame {
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		// TODO Auto-generated method stub
+		for (PillarPair pillar : pillars) {
+			pillar.render();
+		}
 		dot.render();
-		pillar.render();
 	}
 
 	@Override
@@ -36,8 +41,16 @@ public class FlappyDotGame extends BasicGame {
 		container.getGraphics().setBackground(background);
 		dot = new Dot(GAME_WIDTH / 2, GAME_HEIGHT / 2, DOT_JUMP_VY);
 		isStarted = false;
-		pillar = new PillarPair(GAME_WIDTH/2,GAME_HEIGHT/2);
-		
+		pillar = new PillarPair(GAME_WIDTH / 2, GAME_HEIGHT / 2, PILLAR_VX);
+		initPillars();
+	}
+
+	private void initPillars() throws SlickException {
+		pillars = new PillarPair[PILLAR_COUNT];
+		for (int i = 0; i < PILLAR_COUNT; i++) {
+			pillars[i] = new PillarPair(GAME_WIDTH + 100 + 250 * i,
+					GAME_HEIGHT / 2, PILLAR_VX);
+		}
 	}
 
 	@Override
@@ -46,6 +59,11 @@ public class FlappyDotGame extends BasicGame {
 		if (isStarted) {
 			dot.update();
 		}
+		for (PillarPair pillar : pillars) {
+			pillar.update();
+		}
+		// pillar.update();
+
 	}
 
 	public static void main(String[] args) {
