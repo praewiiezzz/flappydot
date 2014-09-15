@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 public class FlappyDotGame extends BasicGame {
 
 	private Dot dot;
-	private PillarPair pillar;
+	public PillarPair pillar;
 	public static final int GAME_WIDTH = 640;
 	public static final int GAME_HEIGHT = 480;
 	public static final float DOT_JUMP_VY = 10;
@@ -46,6 +46,7 @@ public class FlappyDotGame extends BasicGame {
 	}
 
 	private void initPillars() throws SlickException {
+		
 		pillars = new PillarPair[PILLAR_COUNT];
 		for (int i = 0; i < PILLAR_COUNT; i++) {
 			pillars[i] = new PillarPair(GAME_WIDTH + 100 + 250 * i,
@@ -62,7 +63,7 @@ public class FlappyDotGame extends BasicGame {
 		for (PillarPair pillar : pillars) {
 			pillar.update();
 		}
-		// pillar.update();
+		
 
 	}
 

@@ -18,22 +18,23 @@ public class PillarPair {
 
 	public PillarPair(float x, float y,float vx) throws SlickException {
 		this.x = x;
-		this.y = y;
+		randomY();
 		this.vx = vx;
 		topPillar = new Image("res/pillar-top.png");
 		bottomPillar = new Image("res/pillar-bottom.png");
-		randomY();
+	//	randomY();
 	}
 
 	public void render() {
-		topPillar.draw(x-(WIDTH/2),FlappyDotGame.GAME_HEIGHT -(y+ran + IMAGE_HEIGHT+(PILLAR_SPACE/2)));
-		bottomPillar.draw(x-(WIDTH/2),FlappyDotGame.GAME_HEIGHT-(y-ran-(PILLAR_SPACE/2)));
+		topPillar.draw(x-(WIDTH/2),FlappyDotGame.GAME_HEIGHT -(y+ IMAGE_HEIGHT+(PILLAR_SPACE/2)));
+		bottomPillar.draw(x-(WIDTH/2),FlappyDotGame.GAME_HEIGHT-(y-(PILLAR_SPACE/2)));
 	}
 	// random ต้องเอาช่องว่่างไว้ข้างล่างๆก่อน
 	public void randomY()
 	{
 		Random random = new Random();
-		ran = random.nextInt(400)-200;
+		ran = random.nextInt(FlappyDotGame.GAME_HEIGHT-270)+135;
+		this.y = ran;
 	}
 	
 	
@@ -42,6 +43,7 @@ public class PillarPair {
 		if (x<=-80)
 		{
 			x = FlappyDotGame.GAME_WIDTH;
+			this.randomY();
 		}
 	}
 	
