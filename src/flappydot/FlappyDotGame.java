@@ -20,6 +20,7 @@ public class FlappyDotGame extends BasicGame {
 	private boolean isStarted;
 	private PillarPair[] pillars;
 	public static final int PILLAR_COUNT = 3;
+	private boolean isGameOver = false;
 
 	public FlappyDotGame(String title) {
 		super(title);
@@ -41,12 +42,13 @@ public class FlappyDotGame extends BasicGame {
 		container.getGraphics().setBackground(background);
 		dot = new Dot(GAME_WIDTH / 2, GAME_HEIGHT / 2, DOT_JUMP_VY);
 		isStarted = false;
+		isGameOver = false;
 		pillar = new PillarPair(GAME_WIDTH / 2, GAME_HEIGHT / 2, PILLAR_VX);
 		initPillars();
 	}
 
 	private void initPillars() throws SlickException {
-		
+
 		pillars = new PillarPair[PILLAR_COUNT];
 		for (int i = 0; i < PILLAR_COUNT; i++) {
 			pillars[i] = new PillarPair(GAME_WIDTH + 100 + 250 * i,
@@ -57,13 +59,23 @@ public class FlappyDotGame extends BasicGame {
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
-		if (isStarted) {
-			dot.update();
+		if (!isGameOver) {
+			if (isStarted) {
+				dot.update();
+			}
+			dot.isCollide(pillar);
+			for (PillarPair pillar : pillars) {
+				pillar.update();
+				if (dot.isCollide(pillar)) {
+					System.out.println("Collision!");
+					isGameOver = true;
+				}
+			}
 		}
-		for (PillarPair pillar : pillars) {
-			pillar.update();
+		else
+		{
+			System.out.println("gg");
 		}
-		
 
 	}
 

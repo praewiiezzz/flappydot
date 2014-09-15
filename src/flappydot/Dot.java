@@ -33,4 +33,8 @@ public class Dot {
 	public void jump() {
 		this.vy = vjump;
 	}
+
+	public boolean isCollide(PillarPair p) {
+		return CollisionDetector.isCollide(x, y, p.getX(), p.getY());
+	}
 }
