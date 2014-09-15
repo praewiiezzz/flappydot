@@ -74,7 +74,7 @@ public class FlappyDotGame extends BasicGame {
 		}
 		else
 		{
-			System.out.println("gg");
+			init(container);
 		}
 
 	}
